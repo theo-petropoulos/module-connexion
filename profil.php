@@ -10,7 +10,13 @@
 		<?php
 		$connect=mysqli_connect('localhost', 'root', '', 'moduleconnexion');
 
-		if($_COOKIE['user']['login']=='admin')
+		if($_COOKIE['user']['login']=='admin'){
+
+			?>
+			<p>Accéder à la page d'<a href="admin.php">Administration</a>.</p>
+
+			<?php
+		}
 
 
 		else{
