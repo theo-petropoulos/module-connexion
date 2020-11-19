@@ -1,10 +1,7 @@
 <?php
-	if(isset($_POST) && $create_cookie){
-		$user=['login'=>$_POST['login'], 'password'=>$_POST['password'], 'nom'=>$_POST['nom'], 'prenom'=>$_POST['prenom']];
-		var_dump($user);
-		setcookie('user', $user, time()+3600);
-	}
-
+	session_start();
+	$connect=mysqli_connect('localhost', 'root', '', 'moduleconnexion');
+	$db=$connect->query('SELECT * FROM utilisateurs');
 ?>
 
 <!DOCTYPE html>
@@ -17,11 +14,7 @@
 
 	<body>
 		<?php
-			$connect=mysqli_connect('localhost', 'root', '', 'moduleconnexion');
-			$db=$connect->query('SELECT * FROM utilisateurs');
-
 			if($_POST){
-				$create_cookie=0;
 				$err=0;
 				$login=$_POST['login'];
 				$password=$_POST['password'];
@@ -55,7 +48,8 @@
 					$stmt->bind_param("ssss", $nom, $prenom, $login, $password);
 					$stmt->execute();
 					echo "Votre inscription a bien été enregistrée. Retour à ";?><a href="index.php">l'Accueil</a><?php echo ".";
-					$create_cookie++;
+
+					$_SESSION['user']=['login'=>$_POST['login'], 'password'=>$_POST['password'], 'nom'=>$_POST['nom'], 'prenom'=>$_POST['prenom']];
 				}
 
 			}
@@ -80,6 +74,8 @@
 	}
 	$connect->close();
 	?>
+
+
 		
 	</body>
 </html>
