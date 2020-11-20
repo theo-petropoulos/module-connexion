@@ -8,7 +8,12 @@
 <html lang="fr">
 	<head>
 		<title>Connexion</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="Content-Type" charset="UTF-8" lang="fr">
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Geo&display=swap" rel="stylesheet"> 
+		<link href="module.css" rel="stylesheet">
+		<script src="https://kit.fontawesome.com/9ddb75d515.js" crossorigin="anonymous"></script>
 	</head>
 
 	<body>
@@ -45,42 +50,19 @@
 
 				}
 
-				/*if($_POST){
-					$login=$_POST['login'];
-					$password=$_POST['password'];
-
-					for($i=0; $i<mysqli_num_rows($db); $i++){
-						$row=mysqli_fetch_assoc($db);
-
-						if($login==$row['login']){
-							if($password==$row['password']){
-								echo "Vous êtes maintenant connecté. <br>";?> <a href="index.php">Accueil</a><?php
-								exit();
-							}
-							else{
-								echo "Mot de passe incorrect.<br>";?> <a href="connexion.php">Réessayez</a><br><a href="">Mot de passe oublié ?</a><?php
-								exit();
-							}
-						}
-
-						else if($i+1 == mysqli_num_rows($db)){
-							echo "Identifiant ou mot de passe incorrect.<br>";?> <a href="connexion.php">Réessayez</a><br><a href="">Mot de passe oublié ?</a><?php
-							exit();
-						}
-					}
-				}*/
-
-
 				else{
 			?>
+			<section id="form">
+				<form method="post" action="connexion.php">
+					<label for="login">Login :</label>
+					<input type="text" id="login" name="login" placeholder="Ex: John-Doe68" required>
+					<label for="password">Mot de passe :</label>
+					<input type="password" id="password" name="password" required>
+					<input type="submit" id="submitbutton" value="Envoyer">
+				</form>
+			</section>
 
-			<form method="post" action="connexion.php">
-				<label for="login">Login :</label>
-				<input type="text" id="login" name="login" placeholder="Ex: John-Doe68" required>
-				<label for="password">Mot de passe :</label>
-				<input type="password" id="password" name="password" required>
-				<input type="submit" value="Envoyer">
-			</form>
+			<div id="back2index"><p>Retour à l' <a href="index.php">Accueil</a></p></div>
 			<?php
 		}
 

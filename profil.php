@@ -15,7 +15,12 @@
 <html lang="fr">
 	<head>
 		<title>Profil</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="Content-Type" charset="UTF-8" lang="fr">
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Geo&display=swap" rel="stylesheet"> 
+		<link href="module.css" rel="stylesheet">
+		<script src="https://kit.fontawesome.com/9ddb75d515.js" crossorigin="anonymous"></script>
 	</head>
 
 	<body>
@@ -34,7 +39,6 @@
 			foreach($_SESSION['user'] as $value){
 				$pre[]=$value;
 			}
-			var_dump($pre);
 		?>
 			<form method="post" action="profil.php">
 				<label for="login">Login : </label>
@@ -47,6 +51,7 @@
 				<input type="text" id="prenom" name="prenom" value=<?php echo $pre[2]?> required>
 				<input type="submit" value="Envoyer">
 			</form>
+			<div id="back2index"><p>Retour à l' <a href="index.php">Accueil</a></p></div>
 		<?php
 		}
 

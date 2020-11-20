@@ -9,12 +9,20 @@
 <html lang="fr">
 	<head>
 		<title>Inscription</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="Content-Type" charset="UTF-8" lang="fr">
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Geo&display=swap" rel="stylesheet"> 
+		<link href="module.css" rel="stylesheet">
+		<script src="https://kit.fontawesome.com/9ddb75d515.js" crossorigin="anonymous"></script>
 	</head>
 
 	<body>
 		<?php
 			if($_POST){
+				?>
+				<div id="inscription_if">
+				<?php
 				$err=0;
 				$login=$_POST['login'];
 				$password=$_POST['password'];
@@ -24,7 +32,7 @@
 
 				if($password!=$cpassword){
 					echo "Les mots de passe ne correspondent pas. Veuillez ";?><a href="inscription.php">Réessayer</a><?php echo ".";
-					$ok++;
+					$err++;
 				}
 
 				for($i=0; $i<mysqli_num_rows($db); $i++){
@@ -51,27 +59,34 @@
 
 					$_SESSION['user']=['login'=>$_POST['login'], 'password'=>$_POST['password'], 'nom'=>$_POST['nom'], 'prenom'=>$_POST['prenom']];
 				}
-
+				?>
+			</div>
+			<?php
 			}
 
 			else{
 		?>
+		<section id="form">
+			<form method="post" action="inscription.php">
+				<label for="login">Entrez votre identifiant : </label>
+				<input type="text" id="login" name="login" placeholder="Ex: John-Doe68" required>
+				<label for="password">Entrez votre mot de passe : </label>
+				<input type="password" id="password" name="password" required>
+				<label for="cpassword">Confirmez le mot de passe : </label>
+				<input type="password" id="cpassword" name="cpassword" required>
+				<label for="nom">Entrez votre nom : </label>
+				<input type="text" id="nom" name="nom" placeholder="Ex: John" required>
+				<label for="prenom">Entrez votre prénom : </label>
+				<input type="text" id="prenom" name="prenom" placeholder="Ex: Doe" required>
+				<input type="submit" id="submitbutton" value="Envoyer">
+			</form>
+		</section>
 
-		<form method="post" action="inscription.php">
-			<label for="login">Entrez votre identifiant : </label>
-			<input type="text" id="login" name="login" placeholder="Ex: John-Doe68" required>
-			<label for="password">Entrez votre mot de passe : </label>
-			<input type="password" id="password" name="password" required>
-			<label for="cpassword">Confirmez le mot de passe : </label>
-			<input type="password" id="cpassword" name="cpassword" required>
-			<label for="nom">Entrez votre nom : </label>
-			<input type="text" id="nom" name="nom" placeholder="Ex: John" required>
-			<label for="prenom">Entrez votre prénom : </label>
-			<input type="text" id="prenom" name="prenom" placeholder="Ex: Doe" required>
-			<input type="submit" value="Envoyer">
-		</form>
+		<div id="back2index"><p>Retour à l' <a href="index.php">Accueil</a></p></div>
+
 		<?php
 	}
+
 	$connect->close();
 	?>
 
