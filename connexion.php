@@ -9,10 +9,10 @@
 	<head>
 		<title>Connexion</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta http-equiv="Content-Type" charset="UTF-8" lang="fr">
+		<meta charset="UTF-8">
 		<link rel="preconnect" href="https://fonts.gstatic.com">
 		<link href="https://fonts.googleapis.com/css2?family=Geo&display=swap" rel="stylesheet"> 
-		<link href="module.css" rel="stylesheet">
+		<link rel="stylesheet" href="module.css?v=<?php echo time(); ?>">
 		<script src="https://kit.fontawesome.com/9ddb75d515.js" crossorigin="anonymous"></script>
 	</head>
 
@@ -30,19 +30,29 @@
 					$user = $result->fetch_assoc();
 
 					if(empty($user)){
-						echo "Identifiant ou mot de passe incorrect.<br>";?> <a href="connexion.php">Réessayez</a><br><a href="">Mot de passe oublié ?</a><?php
+						?>
+						<section class="mess_connexion"><p><?php
+						echo "Identifiant ou mot de passe incorrect.<br>";?> <a href="connexion.php">Réessayez</a><br><a href="">Mot de passe oublié ?</a>
+						</p></section>
+						<?php
 						exit();
 					}
 
 					else{
 						if($login==$user['login']){
 							if($password==$user['password']){
-								echo "Vous êtes maintenant connecté. <br>";?> <a href="index.php">Accueil</a><?php
+								?><section class="mess_connexion"><p><?php
+								echo "Vous êtes maintenant connecté. <br>";?> <a href="index.php">Accueil</a>
+								</p></section><?php
 								$_SESSION['user']=['login'=>$user['login'], 'password'=>$user['password'], 'nom'=>$user['nom'], 'prenom'=>$user['prenom']];
 								exit();
 							}
 							else{
-								echo "Mot de passe incorrect.<br>";?> <a href="connexion.php">Réessayez</a><br><a href="">Mot de passe oublié ?</a><?php
+								?>
+								<section class="mess_connexion"><p><?php
+								echo "Mot de passe incorrect.<br>";?> <a href="connexion.php">Réessayez</a><br><a href="">Mot de passe oublié ?</a>
+								</p></section>
+								<?php
 								exit();
 							}
 						}

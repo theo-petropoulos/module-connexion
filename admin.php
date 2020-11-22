@@ -16,10 +16,10 @@
 	<head>
 		<title>Profil</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta http-equiv="Content-Type" charset="UTF-8" lang="fr">
+		<meta charset="UTF-8">
 		<link rel="preconnect" href="https://fonts.gstatic.com">
 		<link href="https://fonts.googleapis.com/css2?family=Geo&display=swap" rel="stylesheet"> 
-		<link href="module.css" rel="stylesheet">
+		<link rel="stylesheet" href="module.css?v=<?php echo time(); ?>">
 		<script src="https://kit.fontawesome.com/9ddb75d515.js" crossorigin="anonymous"></script>
 	</head>
 
@@ -30,21 +30,23 @@
 			for($i=0; $i<mysqli_num_rows($db); $i++){
 				$result=mysqli_fetch_assoc($db);
 				?>
-				<form method="post" action="admin.php" >
-					<label for="login">Login : </label>
-					<input type="text" id="login" name="login" value= <?php echo $result['login']?> required>
-					<label for="password">Mot de passe :</label>
-					<input type="password" id="password" name="password" value= <?php for($k=0;$k<strlen($result['password']);$k++){echo "*";}?> required>
-					<label for="nom">Nom : </label>
-					<input type="text" id="nom" name="nom" value=<?php echo $result['nom']?> required>
-					<label for="prenom">Prénom : </label>
-					<input type="text" id="prenom" name="prenom" value=<?php echo $result['prenom']?> required>
-					<input type="checkbox" name="userid" id="userid" hidden checked value=<?php echo $result['id'] ?> >
-					<input type="submit" value="Envoyer">
-				</form>
+				<main id="admin_forms">
+					<form method="post" action="admin.php" >
+						<label for="login">Login : </label>
+						<input type="text" id="login" name="login" value= <?php echo $result['login']?> required>
+						<label for="password">Mot de passe :</label>
+						<input type="password" id="password" name="password" value= <?php for($k=0;$k<strlen($result['password']);$k++){echo "*";}?> required>
+						<label for="nom">Nom : </label>
+						<input type="text" id="nom" name="nom" value=<?php echo $result['nom']?> required>
+						<label for="prenom">Prénom : </label>
+						<input type="text" id="prenom" name="prenom" value=<?php echo $result['prenom']?> required>
+						<input type="checkbox" name="userid" id="userid" hidden checked value=<?php echo $result['id'] ?> >
+						<input type="submit" class="submit_admin" value="Envoyer">
+					</form>
+				</main>
 				<?php
 			}
-			echo "Retour à l'";?><a href="index.php">Accueil</a><?php echo ".";
+			?><div id="back2index"><p>Retour à l' <a href="index.php">Accueil</a></p></div><?php
 		}
 
 		else{

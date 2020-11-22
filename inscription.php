@@ -10,10 +10,10 @@
 	<head>
 		<title>Inscription</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta http-equiv="Content-Type" charset="UTF-8" lang="fr">
+		<meta charset="UTF-8">
 		<link rel="preconnect" href="https://fonts.gstatic.com">
 		<link href="https://fonts.googleapis.com/css2?family=Geo&display=swap" rel="stylesheet"> 
-		<link href="module.css" rel="stylesheet">
+		<link rel="stylesheet" href="module.css?v=<?php echo time(); ?>">
 		<script src="https://kit.fontawesome.com/9ddb75d515.js" crossorigin="anonymous"></script>
 	</head>
 

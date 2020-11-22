@@ -27,6 +27,7 @@ body{
 	flex-wrap:wrap;
 	justify-content: space-between;
 	text-align:center;
+	font-family:'Comic sans MS', Courier;
 }
 
 #banner_index img{
@@ -37,12 +38,14 @@ body{
 }
 
 #profile_avatar{
-	height:15vh;
+	height:auto;
 }
 
 #profile_avatar img{
-	height:15vh;
-	width:auto;
+	width:50%;
+	border:6px solid;
+	border-image:linear-gradient(90deg, rgba(98,255,92,1) 0%, rgba(255,14,14,1) 25%, rgba(53,39,255,1) 75%, rgba(229,140,250,1) 100%);
+	border-image-slice:1;
 }
 
 #index_nologin{
@@ -57,18 +60,28 @@ body{
 }
 
 #block_index{
-	width:70%;
+	width:80%;
 	min-width:250px;
 	flex-grow:1.6;
 	background:white;
 	font-family:'Comic Sans Ms', Courier;
 }
 
+#block_index h3{
+	animation:rotation-color 3s linear infinite;
+	font-size:2em;
+}
+
 #profile_box{
-	width:30%;
+	width:20%;
 	min-width:200px;
 	flex-grow:1;
-	background:white;
+	background:pink;
+}
+
+.article_index h2{
+	animation:pireanim 2s linear infinite;
+	font-size:3em;
 }
 
 a{
@@ -85,15 +98,16 @@ a:hover{
 	cursor:not-allowed;
 }
 
-#form{
+#form, .mess_connexion, #profile_changes, #admin_profile{
 	position:relative;
 	background:black;
 	color:white;
 	width:calc(30vw);
 	height:auto;
+	text-align:center;
 }
 
-#form form{
+#form form, #profile_changes form{
 	display:flex;
 	justify-content: center;
 	text-align:center;
@@ -101,12 +115,12 @@ a:hover{
 	width:100%;
 }
 
-#form label{
+#form label, #profile_changes label{
 	padding:2% 10% 2% 10%;
 	font-size:1em;
 }
 
-#form input{
+#form input, #profile_changes input{
 	width:70%;
 	margin-left:auto;
 	margin-right:auto;
@@ -123,8 +137,50 @@ a:hover{
 	padding:1% 0 1% 0;
 }
 
+#disconnect_button{
+	background:#FF00CC;
+	border:none;
+	border-radius:5%;
+	font-family:'Comic sans MS', Courier;
+	color:white;
+	padding:1% 3% 1% 3%;
+}
+
 #back2index{
 	font-size:1.3em;
+}
+
+#admin_profile img{
+	padding:5% 0 2% 0;
+	width:80%;
+}
+
+.strong_text{
+	font-size:1.5em;
+}
+
+#admin_forms{
+	display:flex;
+	position:relative;
+	background:black;
+	color:white;
+	width:70%;
+	justify-content: center;
+}
+
+#admin_forms form{
+	padding:2% 1% 2% 1%;
+	position:relative;
+	width:100%;
+	text-align:center;
+}
+
+.submit_admin{
+	background:red;
+	border:none;
+	font-family:'Geo', Courier;
+	padding:0.2% 2% 0.2% 2%;
+	vertical-align: bottom;
 }
 
 #inscription_if{
@@ -138,7 +194,19 @@ a:hover{
 }
 
 @media(width<500px){
-	#form{
+	#form, .mess_connexion, #profile_changes, #admin_profile{
 		width:100%;
 	}
+}
+
+@keyframes rotation-color{
+	0%{transform:rotate(0);color:red;}
+	50%{color:blue;}
+	100%{transform:rotate(360deg);color:yellow;}
+}
+
+@keyframes pireanim{
+	0%{color:purple;letter-spacing:0px;font-size:3em;}
+	50%{color:orange;letter-spacing:10px;font-size:2em;}
+	100%{color:green;letter-spacing:0px;font-size:3em;}
 }
