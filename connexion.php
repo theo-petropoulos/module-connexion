@@ -79,7 +79,8 @@
 	}
 
 		else{
-			echo "Vous êtes déjà connecté.<br> Retour à l'";?> <a href="index.php">Accueil</a><?php echo ".";
+			?><section class="mess_connexion"><?php
+			echo "Vous êtes déjà connecté.<br>";?><div id="back2index"><p>Retour à l' <a href="index.php">Accueil</a>.</p></div></section><?php
 		}
 		
 

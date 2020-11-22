@@ -50,7 +50,8 @@
 		}
 
 		else{
-			die("Vous n'avez pas l'autorisation d'accéder à cette page.");
+			?><section class="mess_connexion"><?php
+			die("Vous n'avez pas l'autorisation d'accéder à cette page.");?></section><?php
 		}
 
 		$connect->close();
