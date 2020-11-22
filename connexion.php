@@ -21,8 +21,7 @@
 
 			if(!isset($_SESSION['user'])) {
 				if($_POST){
-					$login=$_POST['login'];
-					$password=$_POST['password'];
+					$login=$_POST['login'];$password=$_POST['password'];
 					$stmt=$connect->prepare('SELECT * FROM utilisateurs WHERE login=? ');
 					$stmt->bind_param("s", $login);
 					$stmt->execute();

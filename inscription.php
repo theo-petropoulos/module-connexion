@@ -22,45 +22,49 @@
 			if($_POST){
 				?>
 				<div id="inscription_if">
-				<?php
-				$err=0;
-				$login=$_POST['login'];
-				$password=$_POST['password'];
-				$cpassword=$_POST['cpassword'];
-				$nom=$_POST['nom'];
-				$prenom=$_POST['prenom'];
+					<?php
+					$err=0;
+					$login=$_POST['login'];$password=$_POST['password'];$cpassword=$_POST['cpassword'];$nom=$_POST['nom'];$prenom=$_POST['prenom'];
 
-				if($password!=$cpassword){
-					echo "Les mots de passe ne correspondent pas. Veuillez ";?><a href="inscription.php">Réessayer</a><?php echo ".";
-					$err++;
-				}
-
-				for($i=0; $i<mysqli_num_rows($db); $i++){
-					$row=mysqli_fetch_assoc($db);
-
-					if($login==$row['login']){
-						$err++;
-						die("Ce nom d'utilisateur existe déjà.");
+					if($password!=$cpassword){
+						?><section class="mess_connexion"><?php
+						echo "Les mots de passe ne correspondent pas. Veuillez ";?><a href="inscription.php">Réessayer</a><?php echo ".";
+						$err++;?>
+						</section><?php
 					}
 
-					if($prenom==$row['prenom'] && $password==$row['password'] && $nom==$row['nom']){
-						$err++;
-						die("Ces informations sont déjà présentes dans notre base de données.<br>");
+					for($i=0; $i<mysqli_num_rows($db); $i++){
+						$row=mysqli_fetch_assoc($db);
+
+						if($login==$row['login']){?>
+							<section class="mess_connexion"><?php
+							$err++;
+							die("Ce nom d'utilisateur existe déjà.");
+							?></section><?php
+						}
+
+						if($prenom==$row['prenom'] && $password==$row['password'] && $nom==$row['nom']){
+							?><section class="mess_connexion"><?php
+							$err++;
+							die("Ces informations sont déjà présentes dans notre base de données.<br>");
+							?></section><?php
+						}
 					}
-				}
 
-				if($err==0){
-					$stmt=$connect->prepare("INSERT INTO `utilisateurs` (nom, prenom, login, password) 
-									VALUES (?,?,?,? ) ");
+					if($err==0){
+						$stmt=$connect->prepare("INSERT INTO `utilisateurs` (nom, prenom, login, password) 
+										VALUES (?,?,?,? ) ");
 
-					$stmt->bind_param("ssss", $nom, $prenom, $login, $password);
-					$stmt->execute();
-					echo "Votre inscription a bien été enregistrée. Retour à ";?><a href="index.php">l'Accueil</a><?php echo ".";
+						$stmt->bind_param("ssss", $nom, $prenom, $login, $password);
+						$stmt->execute();
+						?><section class="mess_connexion"><?php
+						echo "Votre inscription a bien été enregistrée. Retour à ";?><a href="index.php">l'Accueil</a><?php echo ".";
+						?></section><?php
 
-					$_SESSION['user']=['login'=>$_POST['login'], 'password'=>$_POST['password'], 'nom'=>$_POST['nom'], 'prenom'=>$_POST['prenom']];
-				}
-				?>
-			</div>
+						$_SESSION['user']=['login'=>$_POST['login'], 'password'=>$_POST['password'], 'nom'=>$_POST['nom'], 'prenom'=>$_POST['prenom']];
+					}
+					?>
+				</div>
 			<?php
 			}
 
